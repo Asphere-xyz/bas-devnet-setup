@@ -38,7 +38,5 @@ echo 'vm.swappiness=10' >> /etc/sysctl.conf
 echo 'vm.vfs_cache_pressure=50' >> /etc/sysctl.conf
 
 wget https://github.com/docker/compose/releases/download/v2.3.4/docker-compose-linux-x86_64
-mv docker-compose-linux-x86_64 docker-compose
-cp docker-compose $HOME/.docker/cli-plugins
-cp docker-compose /usr/libexec/docker/cli-plugins
+mv docker-compose-linux-x86_64 /usr/libexec/docker/cli-plugins/docker-compose
 chmod +x /usr/libexec/docker/cli-plugins/docker-compose

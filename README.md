@@ -5,7 +5,7 @@ This repository contains scripts for running an independent instance of BAS.
 
 Before running command you must do following steps:
 - Buy a dedicated machine that have at least 8 dedicated CPU core and 32GB RAM (it runs 7 nodes)
-- Make sure you have domain `*.example.com` set to your machine (use dedicated machine with public IP)
+- Make sure you have wildcard domain `*.example.com` set to your machine (use dedicated machine with public IP)
 - Modify `config.json` file to update parameters you need (you can find all addresses in keystore folder)
 
 Config structure:
@@ -28,5 +28,10 @@ Config structure:
 You can check Makefile to choose the most interesting commands, but if you just need to set up everything just run next command:
 
 ```bash
-DOMAIN_NAME=example.com make
+git clone https://github.com/Ankr-network/bas-devnet-setup --recursive
+apt update
+apt install build-essential
+DOMAIN_NAME=dev-02.bas.ankr.com make all
 ```
+
+P.S: Variable `DOMAIN_NAME` should be set to your domain
