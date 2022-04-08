@@ -1,2 +1,4 @@
 genesis.json
 .idea
+blockscout/postgres-data/
+datadir/
