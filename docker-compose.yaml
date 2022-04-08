@@ -184,7 +184,7 @@ services:
       - ./nginx.conf:/nginx.conf
     ports:
       - "443:443"
-    command: /bin/bash -c "envsubst /nginx.conf > /etc/nginx/conf.d/00-default.conf && nginx -g 'daemon off;'"
+    command: /bin/bash -c "envsubst < /nginx.conf > /etc/nginx/conf.d/00-default.conf && nginx -g 'daemon off;'"
     restart: always
 
 volumes:
