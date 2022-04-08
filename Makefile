@@ -4,8 +4,8 @@ install-docker:
 
 .PHONY: install-acme
 install-acme:
-	apt update && apt install socat
 	curl https://get.acme.sh | sh -s email=dmitry@ankr.com
+	bash ./issue-cert.bash
 
 .PHONY: create-genesis
 create-genesis:

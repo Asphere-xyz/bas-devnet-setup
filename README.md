@@ -28,9 +28,10 @@ Config structure:
 You can check Makefile to choose the most interesting commands, but if you just need to set up everything just run next command:
 
 ```bash
-git clone https://github.com/Ankr-network/bas-devnet-setup --recursive
 apt update
-apt install build-essential
+apt install build-essential socat
+git clone https://github.com/Ankr-network/bas-devnet-setup bas --recursive
+cd bas
 DOMAIN_NAME=dev-02.bas.ankr.com make all
 ```
 
