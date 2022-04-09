@@ -36,3 +36,17 @@ DOMAIN_NAME=dev-02.bas.ankr.com make all
 ```
 
 P.S: Variable `DOMAIN_NAME` should be set to your domain
+
+If you want to run node w/o load balancer and SSL certificates then use next command:
+```bash
+make all-no-balancer
+```
+
+Docker compose files exposes next ports:
+- 7432 - blockscout PostgreSQL database
+- 4000 - blockscout explorer
+- 3000 - faucet UI
+- 3001 - staking UI
+- 8545 - RPC endpoint
+- 8546 - WS endpoint
+- 30303 - bootnode
