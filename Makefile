@@ -5,7 +5,7 @@ install-docker:
 .PHONY: install-acme
 install-acme:
 	curl https://get.acme.sh | sh -s email=dmitry@ankr.com
-	bash ./issue-cert.bash
+	bash ./issue-cert.bash || true
 
 .PHONY: create-genesis
 create-genesis:
@@ -14,7 +14,7 @@ create-genesis:
 
 .PHONY: run-blockchain
 run-blockchain:
-	docker compose up --build -d
+	cat ./docker-compose.yaml | envsubst | docker-compose -f - up -d
 
 .PHONY: run-explorer
 run-explorer:
