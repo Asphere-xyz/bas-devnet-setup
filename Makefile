@@ -29,3 +29,9 @@ all: install-docker create-genesis run-blockchain run-explorer
 
 .PHONY: all
 all: install-docker install-acme create-genesis run-blockchain run-explorer run-balancer
+
+.PHONY: stop-all
+stop-all:
+	docker compose -f ./balancer/docker-compose.yaml stop
+	docker compose -f ./blockscout/docker-compose.yaml stop
+	docker compose stop
