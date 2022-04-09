@@ -13,6 +13,8 @@ services:
     volumes:
       - "./genesis.json:/datadir/genesis.json"
       - "./datadir/bootnode:/datadir/geth"
+    ports:
+      - "30303:30303"
     restart: always
 
   validator_1:
@@ -165,7 +167,7 @@ services:
       - "--faucet.amount=10"
       - "--faucet.tiers=5"
     ports:
-      - "8080:8080"
+      - "3000:8080"
     volumes:
       - "./genesis.json:/datadir/genesis.json"
       - "./keystore:/datadir/keystore"
@@ -177,17 +179,3 @@ services:
     ports:
       - "3001:80"
     restart: always
-  nginx:
-    image: nginx
-    volumes:
-      - /root/.acme.sh/:/root/.acme.sh/
-      - ./nginx.conf:/nginx.conf
-    environment:
-      DOMAIN_NAME: "${DOMAIN_NAME}"
-    ports:
-      - "443:443"
-    command: /bin/bash -c "envsubst '${DOMAIN_NAME}' < /nginx.conf > /etc/nginx/conf.d/00-default.conf && cat /etc/nginx/conf.d/00-default.conf && nginx -g 'daemon off;'"
-    restart: always
-
-volumes:
-  postgresql_data: { }

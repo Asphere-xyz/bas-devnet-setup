@@ -5,7 +5,7 @@ install-docker:
 .PHONY: install-acme
 install-acme:
 	curl https://get.acme.sh | sh -s email=dmitry@ankr.com
-	bash ./issue-cert.bash || true
+	bash ./issue-cert.bash
 
 .PHONY: create-genesis
 create-genesis:
@@ -20,5 +20,12 @@ run-blockchain:
 run-explorer:
 	docker compose -f ./blockscout/docker-compose.yaml up --build -d
 
+.PHONY: run-balancer
+run-balancer:
+	cat ./balancer/docker-compose.yaml | envsubst | docker-compose -f - up -d
+
+.PHONY: all-no-balancer
+all: install-docker create-genesis run-blockchain run-explorer
+
 .PHONY: all
-all: install-docker install-acme create-genesis run-blockchain run-explorer
+all: install-docker install-acme create-genesis run-blockchain run-explorer run-balancer

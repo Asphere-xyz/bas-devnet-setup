@@ -1,0 +1,13 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - /root/.acme.sh/:/root/.acme.sh/
+      - ./nginx.conf:/nginx.conf
+    environment:
+      DOMAIN_NAME: "${DOMAIN_NAME}"
+    ports:
+      - "443:443"
+    command: /bin/bash -c "envsubst '${DOMAIN_NAME}' < /nginx.conf > /etc/nginx/conf.d/00-default.conf && cat /etc/nginx/conf.d/00-default.conf && nginx -g 'daemon off;'"
+    restart: always
