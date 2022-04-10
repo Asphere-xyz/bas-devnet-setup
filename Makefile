@@ -36,3 +36,7 @@ stop-all:
 	docker compose -f ./balancer/docker-compose.yaml stop
 	docker compose -f ./blockscout/docker-compose.yaml stop
 	docker compose stop
+
+.PHONE: reset-all
+reset-all: stop-all
+	rm -rf ./datadir ./blockscout/postgres-data
