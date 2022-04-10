@@ -1,5 +1,4 @@
 #!/bin/bash
 docker compose down
-rm -rf datadir
+rm -rf ./datadir ./blockscout/postgres-data
 docker compose pull
-docker compose up --build -d

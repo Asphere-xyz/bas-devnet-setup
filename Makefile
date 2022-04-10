@@ -10,6 +10,7 @@ install-acme:
 .PHONY: create-genesis
 create-genesis:
 	docker build -t bas-genesis-config ./genesis
+	rm -rf ./genesis.json
 	docker run --rm -v ${PWD}/config.json:/config.json -t bas-genesis-config /config.json > ./genesis.json
 
 .PHONY: run-blockchain
