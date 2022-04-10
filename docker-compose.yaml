@@ -176,6 +176,14 @@ services:
 
   staking-ui:
     image: ankrnetwork/bas-staking-ui:devel
+    environment:
+      CHAIN_ID: "14000"
+      CHAIN_NAME: "BAS devnet"
+      CHAIN_RPC: "https://rpc.${DOMAIN_NAME}"
+      EXPLORER_HOME_URL: "https://explorer.${DOMAIN_NAME}/"
+      EXPLORER_TX_URL: "https://explorer.${DOMAIN_NAME}/tx/{tx}"
+      EXPLORER_ADDRESS_URL: "https://explorer.${DOMAIN_NAME}/address/{address}"
+      EXPLORER_BLOCK_URL: "https://explorer.${DOMAIN_NAME}/block/{block}"
     ports:
       - "3001:80"
     restart: always

@@ -37,6 +37,12 @@ DOMAIN_NAME=dev-02.bas.ankr.com make all
 
 P.S: Variable `DOMAIN_NAME` should be set to your domain
 
+Deployed services can be access though next endpoints:
+- https://rpc.${DOMAIN_NAME} (port 8545,9546) - Web3 RPC endpoint
+- https://explorer.${DOMAIN_NAME} (port 4000) - Blockchain Explorer
+- https://faucet.${DOMAIN_NAME} (port 3000) - Faucet
+- https://staking.${DOMAIN_NAME} (port 3001) - Staking UI
+
 If you want to run node w/o load balancer and SSL certificates then use next command:
 ```bash
 make all-no-balancer
