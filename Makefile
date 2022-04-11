@@ -4,7 +4,7 @@ install-docker:
 
 .PHONY: install-acme
 install-acme:
-	curl https://get.acme.sh | sh -s email=dmitry@ankr.com
+	curl https://get.acme.sh | sh -s email=dmitry@ankr.com || true
 	bash ./issue-cert.bash
 
 .PHONY: create-genesis
