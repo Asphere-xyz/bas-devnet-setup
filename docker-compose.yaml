@@ -177,7 +177,8 @@ services:
   staking-ui:
     image: ankrnetwork/bas-staking-ui:devel
     environment:
-      CHAIN_ID: "14000"
+      REACT_APP_ENVIRONMENT: "env"
+      CHAIN_ID: "14001"
       CHAIN_NAME: "BAS devnet"
       CHAIN_RPC: "https://rpc.${DOMAIN_NAME}"
       EXPLORER_HOME_URL: "https://explorer.${DOMAIN_NAME}/"
