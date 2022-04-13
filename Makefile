@@ -26,7 +26,7 @@ run-balancer:
 	cat ./balancer/docker-compose.yaml | envsubst | docker-compose -f - up -d
 
 .PHONY: all-no-balancer
-all: install-docker create-genesis run-blockchain run-explorer
+all-no-balancer: install-docker create-genesis run-blockchain run-explorer
 
 .PHONY: all
 all: install-docker install-acme create-genesis run-blockchain run-explorer run-balancer
