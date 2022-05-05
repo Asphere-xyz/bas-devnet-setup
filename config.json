@@ -8,8 +8,8 @@
     "0x8e1ea6eaa09c3b40f4a51fcd056a031870a0549a"
   ],
   "systemTreasury": {
-    "0x00a601f45688dba8a070722073b015277cf36725": "9000",
-    "0x100dd6c27454cb1DAdd1391214A344C6208A8C80": "1000"
+    "0x00a601f45688dba8a070722073b015277cf36725": 9000,
+    "0x100dd6c27454cb1DAdd1391214A344C6208A8C80": 1000
   },
   "consensusParams": {
     "activeValidatorsLength": 25,
