@@ -12,7 +12,7 @@ create-genesis:
 	docker build -t bas-genesis-config ./genesis
 	rm -rf ./genesis.json
 	CHAIN_ID=1 envsubst < config.json > tmp_config.json
-	docker run --rm -v ${PWD}/config.json:/tmp_config.json -t bas-genesis-config /config.json > ./genesis.json
+	docker run --rm -v ${PWD}/tmp_config.json:/config.json -t bas-genesis-config /config.json > ./genesis.json
 	rm -f tmp_config.json
 
 .PHONY: run-blockchain
