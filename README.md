@@ -13,7 +13,7 @@ Config structure:
 - `validators` - list of initial validator set (make sure that you have the same list in docker compose file)
 - `systemTreasury` - address of system treasury that accumulates 1/16 of rewards (might be governance)
 - `consensusParams` - parameters for the consensus and staking
-  - `activeValidatorsLength` - suggested values are (3k+1, where k is honest validators, even better): 7, 13, 19, 25, 31...
+  - `activeValidatorsLength` - total amount of active validators (suggested values are 3k+1, where k is honest validators, even better, for example 7, 13, 19, 25, 31...)
   - `epochBlockInterval` - better to use 1 day epoch (86400/3=28800, where 3s is block time)
   - `misdemeanorThreshold` - after missing this amount of blocks per day validator losses all daily rewards (penalty)
   - `felonyThreshold` - after missing this amount of blocks per day validator goes in jail for N epochs
@@ -38,14 +38,14 @@ CHAIN_ID=14000 DOMAIN_NAME=dev-02.bas.ankr.com make all
 P.S: Variable `DOMAIN_NAME` should be set to your domain
 
 Deployed services can be access though next endpoints:
-- https://rpc.${DOMAIN_NAME} (port 8545,8546) - Web3 RPC endpoint
-- https://explorer.${DOMAIN_NAME} (port 4000) - Blockchain Explorer
-- https://faucet.${DOMAIN_NAME} (port 3000) - Faucet
-- https://staking.${DOMAIN_NAME} (port 3001) - Staking UI
+- https://rpc.${DOMAIN_NAME} - Web3 RPC endpoint
+- https://explorer.${DOMAIN_NAME} - Blockchain Explorer
+- https://faucet.${DOMAIN_NAME} - Faucet
+- https://staking.${DOMAIN_NAME} - Staking UI
 
 If you want to run node w/o load balancer and SSL certificates then use next command:
 ```bash
-make all-no-balancer
+CHAIN_ID=14000 make all-no-balancer
 ```
 
 Docker compose files exposes next ports:
