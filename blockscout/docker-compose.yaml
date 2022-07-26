@@ -39,7 +39,7 @@ services:
       - blockscout
     image: ankrnetwork/sidechain-explorer:devel
     environment:
-      DATABASE_POSTGRESQL_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
+      DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
       GATEWAY_HTTP_ADDRESS: ":9000"
       REACT_APP_API_ENDPOINT: "/"
       REACT_APP_DEFAULT_NETWORK: "default"
