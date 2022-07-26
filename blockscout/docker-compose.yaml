@@ -38,6 +38,8 @@ services:
     depends_on:
       - blockscout
     image: ankrnetwork/sidechain-explorer:devel
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     environment:
       DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
       GATEWAY_HTTP_ADDRESS: ":9000"
