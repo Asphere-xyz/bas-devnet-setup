@@ -43,6 +43,7 @@ services:
     environment:
       DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
       GATEWAY_HTTP_ADDRESS: ":9000"
+      STAKING_ETH1_URL: "http://host.docker.internal:8545/"
       REACT_APP_API_ENDPOINT: "/"
       REACT_APP_DEFAULT_NETWORK: "default"
     ports:
