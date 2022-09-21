@@ -3,9 +3,7 @@
   "validators": [
     "0x08fae3885e299c24ff9841478eb946f41023ac69",
     "0x751aaca849b09a3e347bbfe125cf18423cc24b40",
-    "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b",
-    "0x49c0f7c8c11a4c80dc6449efe1010bb166818da8",
-    "0x8e1ea6eaa09c3b40f4a51fcd056a031870a0549a"
+    "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b"
   ],
   "systemTreasury": {
     "0x00a601f45688dba8a070722073b015277cf36725": 9000,
@@ -24,9 +22,7 @@
   "initialStakes": {
     "0x08fae3885e299c24ff9841478eb946f41023ac69": "0x3635c9adc5dea00000",
     "0x751aaca849b09a3e347bbfe125cf18423cc24b40": "0x3635c9adc5dea00000",
-    "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b": "0x3635c9adc5dea00000",
-    "0x49c0f7c8c11a4c80dc6449efe1010bb166818da8": "0x3635c9adc5dea00000",
-    "0x8e1ea6eaa09c3b40f4a51fcd056a031870a0549a": "0x3635c9adc5dea00000"
+    "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b": "0x3635c9adc5dea00000"
   },
   "votingPeriod": 60,
   "faucet": {

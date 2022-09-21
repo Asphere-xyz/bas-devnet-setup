@@ -1,5 +1,5 @@
 BAS DevNet Setup
-===============
+================
 
 This repository contains scripts for running an independent instance of BAS.
 
@@ -45,14 +45,17 @@ Deployed services can be access though next endpoints:
 
 If you want to run node w/o load balancer and SSL certificates then use next command:
 ```bash
-CHAIN_ID=14000 make all-no-balancer
+CHAIN_ID=14000 make create-genesis start
 ```
 
 Docker compose files exposes next ports:
-- 7432 - blockscout PostgreSQL database
-- 4000 - blockscout explorer
-- 3000 - faucet UI
-- 3001 - staking UI
+- 30303 - bootnode endpoint
 - 8545 - RPC endpoint
 - 8546 - WS endpoint
-- 30303 - bootnode
+- 3000 - faucet UI
+- 3001 - staking UI
+- 3002 - config UI 
+- 8080 - genesis config endpoint
+- 7432 - blockscout PostgreSQL database
+- 4000 - blockscout explorer
+- 9000 - explorer
