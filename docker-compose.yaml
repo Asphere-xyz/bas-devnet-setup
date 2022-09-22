@@ -1,4 +1,4 @@
-version: "3"
+version: "3.5"
 services:
 
   bootnode:
@@ -15,6 +15,8 @@ services:
       - "./datadir/bootnode:/datadir/geth"
     ports:
       - "30303:30303"
+    networks:
+      - internal-network
     restart: always
 
   validator_1:
@@ -37,6 +39,8 @@ services:
       - "./genesis/keystore:/datadir/keystore"
       - "./genesis/password.txt:/datadir/password.txt"
       - "./datadir/validator_1:/datadir/geth"
+    networks:
+      - internal-network
     restart: always
   validator_2:
     image: ankrnetwork/bas-template-bsc:devel
@@ -58,6 +62,8 @@ services:
       - "./genesis/keystore:/datadir/keystore"
       - "./genesis/password.txt:/datadir/password.txt"
       - "./datadir/validator_2:/datadir/geth"
+    networks:
+      - internal-network
     restart: always
   validator_3:
     image: ankrnetwork/bas-template-bsc:devel
@@ -74,6 +80,8 @@ services:
       - "--gcmode=archive"
       - "--syncmode=full"
       - "--networkid=17243"
+    networks:
+      - internal-network
     volumes:
       - "./genesis.json:/datadir/genesis.json"
       - "./genesis/keystore:/datadir/keystore"
@@ -102,8 +110,8 @@ services:
       - "--ws.api=eth,net,web3,debug,trace,txpool"
       - "--ws.port=8546"
       - "--ws.origins=*"
-    extra_hosts:
-      - 'host.docker.internal:127.0.0.1'
+    networks:
+      - internal-network
     ports:
       - "8545:8545"
       - "8546:8546"
@@ -134,10 +142,14 @@ services:
       - "./genesis.json:/datadir/genesis.json"
       - "./genesis/keystore:/datadir/keystore"
       - "./genesis/password.txt:/datadir/password.txt"
+    networks:
+      - internal-network
     restart: always
   genesis-config:
     image: ankrnetwork/bas-genesis-config:devel
     command: ["--http"]
+    networks:
+      - internal-network
     ports:
       - "8080:8080"
     restart: always
@@ -159,8 +171,8 @@ services:
       REACT_APP_CHAIN_ID: "${CHAIN_ID}"
       REACT_APP_EXPLORER_URL: "https://explorer.${DOMAIN_NAME}/"
       REACT_APP_CHAIN_NAME: "BAS devnet #${CHAIN_ID}"
-    extra_hosts:
-      - 'host.docker.internal:127.0.0.1'
+    networks:
+      - internal-network
     ports:
       - "3001:80"
     restart: always
@@ -168,6 +180,8 @@ services:
     image: ankrnetwork/bas-config-ui:devel
     ports:
       - "3002:80"
+    networks:
+      - internal-network
     restart: always
 
   blockscout-db:
@@ -179,6 +193,8 @@ services:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
     volumes:
       - ./datadir/blockscout:/var/lib/postgresql/data
+    networks:
+      - internal-network
     ports:
       - "7432:5432"
   blockscout:
@@ -189,8 +205,8 @@ services:
     links:
       - blockscout-db:database
     command: 'mix do ecto.create, ecto.migrate, phx.server'
-    extra_hosts:
-      - 'host.docker.internal:127.0.0.1'
+    networks:
+      - internal-network
     environment:
       ETHEREUM_JSONRPC_VARIANT: "geth"
       BLOCK_TRANSFORMER: "clique"
@@ -203,8 +219,8 @@ services:
     depends_on:
       - blockscout
     image: ankrnetwork/sidechain-explorer:devel
-    extra_hosts:
-      - 'host.docker.internal:127.0.0.1'
+    networks:
+      - internal-network
     environment:
       DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
       GATEWAY_HTTP_ADDRESS: ":9000"
@@ -220,9 +236,14 @@ services:
       DOMAIN_NAME: "${DOMAIN_NAME}"
     volumes:
       - /root/.acme.sh/:/root/.acme.sh/
-    extra_hosts:
-      - 'host.docker.internal:127.0.0.1'
+    networks:
+      - internal-network
     ports:
       - "80:80"
       - "443:443"
     restart: always
+
+networks:
+  internal-network:
+    external: false
+    name: internal-network
