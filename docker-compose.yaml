@@ -193,8 +193,8 @@ services:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
     volumes:
       - ./datadir/blockscout:/var/lib/postgresql/data
-    networks:
-      - internal-network
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     ports:
       - "7432:5432"
   blockscout:
