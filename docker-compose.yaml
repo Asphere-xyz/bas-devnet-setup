@@ -215,6 +215,10 @@ services:
 
   nginx:
     build: "./nginx"
+    environment:
+      DOMAIN_NAME: "${DOMAIN_NAME}"
+    volumes:
+      - /root/.acme.sh/:/root/.acme.sh/
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     restart: always
