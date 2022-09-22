@@ -44,4 +44,4 @@ reset: stop
 	rm -rf ./datadir
 
 .PHONY: all
-all: install-acme create-genesis start
+all: create-genesis start
