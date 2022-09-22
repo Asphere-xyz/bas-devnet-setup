@@ -103,7 +103,7 @@ services:
       - "--ws.port=8546"
       - "--ws.origins=*"
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:127.0.0.1'
     ports:
       - "8545:8545"
       - "8546:8546"
@@ -160,7 +160,7 @@ services:
       REACT_APP_EXPLORER_URL: "https://explorer.${DOMAIN_NAME}/"
       REACT_APP_CHAIN_NAME: "BAS devnet #${CHAIN_ID}"
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:127.0.0.1'
     ports:
       - "3001:80"
     restart: always
@@ -190,7 +190,7 @@ services:
       - blockscout-db:database
     command: 'mix do ecto.create, ecto.migrate, phx.server'
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:127.0.0.1'
     environment:
       ETHEREUM_JSONRPC_VARIANT: "geth"
       BLOCK_TRANSFORMER: "clique"
@@ -204,7 +204,7 @@ services:
       - blockscout
     image: ankrnetwork/sidechain-explorer:devel
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:127.0.0.1'
     environment:
       DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
       GATEWAY_HTTP_ADDRESS: ":9000"
@@ -221,5 +221,8 @@ services:
     volumes:
       - /root/.acme.sh/:/root/.acme.sh/
     extra_hosts:
-      - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:127.0.0.1'
+    ports:
+      - "80:80"
+      - "443:443"
     restart: always
