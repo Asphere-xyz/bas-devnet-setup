@@ -154,7 +154,7 @@ services:
       EXPLORER_ADDRESS_URL: "https://explorer.${DOMAIN_NAME}/address/{address}"
       EXPLORER_BLOCK_URL: "https://explorer.${DOMAIN_NAME}/block/{block}"
       # new env
-      REACT_APP_API_ENDPOINT: "http://host.docker.internal:8545"
+      REACT_APP_API_ENDPOINT: "https://rpc.${DOMAIN_NAME}"
       REACT_APP_DEFAULT_NETWORK: "default"
       REACT_APP_CHAIN_ID: "${CHAIN_ID}"
       REACT_APP_EXPLORER_URL: "https://explorer.${DOMAIN_NAME}/"
