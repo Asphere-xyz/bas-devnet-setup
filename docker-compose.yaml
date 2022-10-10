@@ -215,6 +215,14 @@ services:
       ECTO_USE_SSL: "false"
     ports:
       - "4000:4000"
+  redis:
+    image: redis
+    command: redis-server --requirepass 123456
+    volumes:
+      - ./datadir/redis:/data
+    ports:
+      - "6379:6379"
+    restart: always
   blockscout-gateway:
     depends_on:
       - blockscout
@@ -223,6 +231,8 @@ services:
       - 'host.docker.internal:host-gateway'
     environment:
       DATABASE_POSTGRES_URL: "postgres://postgres:@host.docker.internal:7432/blockscout?sslmode=disable"
+      DATABASE_REDIS_URL: "host.docker.internal:6379"
+      DATABASE_REDIS_PASSWORD: "123456"
       GATEWAY_HTTP_ADDRESS: ":9000"
       STAKING_ETH1_URL: "http://host.docker.internal:8545/"
       REACT_APP_API_ENDPOINT: "/"
