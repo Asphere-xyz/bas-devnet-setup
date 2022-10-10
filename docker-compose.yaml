@@ -215,7 +215,7 @@ services:
       ECTO_USE_SSL: "false"
     ports:
       - "4000:4000"
-  redis:
+  blockscout-redis:
     image: redis
     command: redis-server --requirepass 123456
     volumes:
