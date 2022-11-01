@@ -18,11 +18,7 @@ install-acme:
 
 .PHONY: create-genesis
 create-genesis: check-env
-	docker build -t bas-genesis-config ./genesis
-	rm -rf ./genesis.json
-	envsubst < config.json > tmp_config.json
-	docker run --rm -v ${PWD}/tmp_config.json:/config.json -t bas-genesis-config /config.json > ./genesis.json
-	rm -f tmp_config.json
+	bash ./scripts/create-genesis.bash
 
 .PHONY: start
 start: check-env
@@ -39,9 +35,12 @@ reset-explorer: check-env stop
 	rm -rf ./datadir/blockscout
 	cat ./docker-compose.yaml | envsubst | docker-compose -f - up -d
 
+.PHONE: delete-state
+delete-state:
+	rm -rf ./datadir genesis.json
+
 .PHONE: reset
-reset: stop
-	rm -rf ./datadir
+reset: stop delete-state create-genesis start
 
 .PHONY: all
 all: create-genesis start
