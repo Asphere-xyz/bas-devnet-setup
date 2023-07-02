@@ -2,7 +2,7 @@ version: "3.5"
 services:
 
   bootnode:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "geth"
       - "--datadir=/datadir"
@@ -20,7 +20,7 @@ services:
     restart: always
 
   validator_1:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "geth"
       - "--datadir=/datadir"
@@ -28,8 +28,8 @@ services:
       - "--mine"
       - "--password=/datadir/password.txt"
       - "--allow-insecure-unlock"
-      - "--unlock=0x08fae3885e299c24ff9841478eb946f41023ac69"
-      - "--miner.etherbase=0x08fae3885e299c24ff9841478eb946f41023ac69"
+      - "--unlock=0xdDD8bdD1B64Be20ED98191389FCf5978f630d310"
+      - "--miner.etherbase=0xdDD8bdD1B64Be20ED98191389FCf5978f630d310"
       - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@host.docker.internal:30303"
       - "--gcmode=archive"
       - "--syncmode=full"
@@ -43,7 +43,7 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: always
   validator_2:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "geth"
       - "--datadir=/datadir"
@@ -51,8 +51,8 @@ services:
       - "--mine"
       - "--password=/datadir/password.txt"
       - "--allow-insecure-unlock"
-      - "--unlock=0x751aaca849b09a3e347bbfe125cf18423cc24b40"
-      - "--miner.etherbase=0x751aaca849b09a3e347bbfe125cf18423cc24b40"
+      - "--unlock=0xaa1A2b6a5178Ab22d72FD21Cb91a2543121bE127"
+      - "--miner.etherbase=0xaa1A2b6a5178Ab22d72FD21Cb91a2543121bE127"
       - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@host.docker.internal:30303"
       - "--gcmode=archive"
       - "--syncmode=full"
@@ -66,7 +66,7 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: always
   validator_3:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "geth"
       - "--datadir=/datadir"
@@ -88,9 +88,32 @@ services:
       - "./genesis/password.txt:/datadir/password.txt"
       - "./datadir/validator_3:/datadir/geth"
     restart: always
+  validator_4:
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
+    command:
+      - "geth"
+      - "--datadir=/datadir"
+      # - "--genesis=/datadir/genesis.json"
+      - "--mine"
+      - "--password=/datadir/password.txt"
+      - "--allow-insecure-unlock"
+      - "--unlock=0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b"
+      - "--miner.etherbase=0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@host.docker.internal:30303"
+      - "--gcmode=archive"
+      - "--syncmode=full"
+      - "--networkid=17243"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./genesis/keystore:/datadir/keystore"
+      - "./genesis/password.txt:/datadir/password.txt"
+      - "./datadir/validator_4:/datadir/geth"
+    restart: always
 
   rpc:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "geth"
       - "--datadir=/datadir"
@@ -123,7 +146,7 @@ services:
     restart: always
 
   faucet:
-    image: ankrnetwork/bas-template-bsc:devel
+    image: chanhdinh97/bas-template-bsc:devel-metadap-1.0.0
     command:
       - "faucet"
       - "--genesis=/datadir/genesis.json"
@@ -146,7 +169,8 @@ services:
       - 'host.docker.internal:host-gateway'
     restart: always
   genesis-config:
-    image: ankrnetwork/bas-genesis-config:devel
+    image: chanhdinh97/bas-genesis-config:devel-cc8f-metadap-1.0.0
+    # image: ankrnetwork/bas-genesis-config:devel
     command: ["--http"]
     extra_hosts:
       - 'host.docker.internal:host-gateway'
@@ -155,7 +179,8 @@ services:
     restart: always
 
   staking-ui:
-    image: ankrnetwork/bas-staking-ui:devel
+    # image: chanhdinh97/bas-staking-ui:devel-metadap-1.0.0
+    image: metadaptv/bas-staking-ui:metadap-1.0.0
     environment:
       REACT_APP_ENVIRONMENT: "env"
       CHAIN_ID: "${CHAIN_ID}"
@@ -177,7 +202,8 @@ services:
       - "3001:80"
     restart: always
   config-ui:
-    image: ankrnetwork/bas-config-ui:devel
+    # image: chanhdinh97/bas-config-ui:devel-metadap-1.0.0
+    image: metadaptv/bas-config-ui:metadap-1.0.0
     ports:
       - "3002:80"
     extra_hosts:
@@ -200,7 +226,8 @@ services:
   blockscout:
     depends_on:
       - blockscout-db
-    image: blockscout/blockscout:${DOCKER_TAG:-4.1.5}
+    image: chanhdinh97/blockscout:4.1.5-metadap-1.0.0
+    # image: blockscout/blockscout:5.2.0
     restart: always
     links:
       - blockscout-db:database
@@ -226,7 +253,8 @@ services:
   blockscout-gateway:
     depends_on:
       - blockscout
-    image: ankrnetwork/sidechain-explorer:devel
+    # image: chanhdinh97/sidechain-explorer:devel-metadap-v0.0.3-test 
+    image: ankrnetwork/sidechain-explorer:latest
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     environment:
@@ -239,6 +267,7 @@ services:
       REACT_APP_DEFAULT_NETWORK: "default"
     ports:
       - "9000:9000"
+    restart: always
 
   nginx:
     build: "./nginx"

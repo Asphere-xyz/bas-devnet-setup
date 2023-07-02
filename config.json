@@ -1,8 +1,8 @@
 {
   "chainId": $CHAIN_ID,
   "validators": [
-    "0x08fae3885e299c24ff9841478eb946f41023ac69",
-    "0x751aaca849b09a3e347bbfe125cf18423cc24b40",
+    "0xdDD8bdD1B64Be20ED98191389FCf5978f630d310",
+    "0xaa1A2b6a5178Ab22d72FD21Cb91a2543121bE127",
     "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b"
   ],
   "systemTreasury": {
@@ -20,8 +20,8 @@
     "minStakingAmount": "0xde0b6b3a7640000"
   },
   "initialStakes": {
-    "0x08fae3885e299c24ff9841478eb946f41023ac69": "0x3635c9adc5dea00000",
-    "0x751aaca849b09a3e347bbfe125cf18423cc24b40": "0x3635c9adc5dea00000",
+    "0xdDD8bdD1B64Be20ED98191389FCf5978f630d310": "0x3635c9adc5dea00000",
+    "0xaa1A2b6a5178Ab22d72FD21Cb91a2543121bE127": "0x3635c9adc5dea00000",
     "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b": "0x3635c9adc5dea00000"
   },
   "votingPeriod": 60,
